@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+<div th:if="${not #lists.isEmpty(productList)}">
+    <h2>Products</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        <tr th:each="product : ${productList}">
+            <td th:text="${product.nameProduct}"></td>
+            <td th:text="${product.price}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
