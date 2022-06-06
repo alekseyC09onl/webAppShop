@@ -8,8 +8,26 @@ admin_add_product.html<!DOCTYPE html>
     <a>update prod</a>
 
     <div>
-        <form method="post" action="/api/v2/products" target="_parent">
-            <button type="submit">Update product</button>
+        <form th:method="put" th:action="@{/api/v2/admin/products/{id}(id=${productDTO.getId()})}" th:object="${productDTO}">
+            <div>
+                <label for="nameProduct">Name product</label>
+                <input type="text" th:field="*{nameProduct}" id="nameProduct"/>
+
+                <br/>
+
+                <label for="price">Price</label>
+                <input type="text" th:field="*{price}" id="price"/>
+
+                <br/>
+
+                <label for="available">Available</label>
+                <input type="text" th:field="*{availableProduct}" id="available"/>
+
+
+                <br/>
+
+                <input type="submit" value="Update">
+            </div>
         </form>
     </div>
 

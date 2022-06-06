@@ -47,9 +47,11 @@ public class ProductController {
     }
 
     @PutMapping("/admin/products/{id}")
-    public String updateProduct(@PathVariable("id") Integer id, Model model) throws ProductException {
+    public String updateProduct(@ModelAttribute("productDTO") ProductDTO productDTO,
+                                    @PathVariable("id") Integer id) throws ProductException {
 
-        return productService.updateProduct(productDTO);
+        productService.updateProduct(productDTO);
+        return "redirect:/api/v2/admin/products";
     }
 
     @DeleteMapping("/admin/products/{id}")
@@ -69,8 +71,9 @@ public class ProductController {
         return "admin_add_product";
     }
 
-    @GetMapping("/admin/products/update")
-    public String redirectUpdateMethod() {
+    @GetMapping("/admin/products/update/{id}")
+    public String redirectUpdateMethod(@PathVariable("id") Integer id, Model model) throws ProductException {
+        model.addAttribute("productDTO", productService.getProductById(id));
         return "admin_update_product";
     }
 
