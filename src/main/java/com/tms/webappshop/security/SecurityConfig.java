@@ -1,6 +1,7 @@
 package com.tms.webappshop.security;
 
 import com.tms.webappshop.entity.PermissionsEnum;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v1/**").permitAll()
+                .antMatchers("/api/v2/admin/**").hasAuthority(PermissionsEnum.WRITE.getPermission())
+                .antMatchers(HttpMethod.GET, "/api/v2/products/**").anonymous()
+                .antMatchers(HttpMethod.GET, "/api/v2/products/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/user/**").hasAuthority(PermissionsEnum.READ.getPermission())
                 .antMatchers(HttpMethod.GET, "/admin/**").hasAuthority(PermissionsEnum.WRITE.getPermission())
                 .antMatchers(HttpMethod.GET, "/products/**").hasAuthority(PermissionsEnum.READ.getPermission())

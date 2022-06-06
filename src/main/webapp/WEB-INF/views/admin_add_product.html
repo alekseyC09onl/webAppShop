@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=”http://www.thymeleaf.org”>
+<head>
+    <meta charset="UTF-8">
+    <title>New product</title>
+</head>
+<body>
+    <a>add prod</a>
+
+    <h1>Form</h1>
+
+<!--    <form method="post" action="/api/v2/admin/products">-->         <!--Рабочий вариант-->
+<!--        <label for="nameProduct">Name product</label>-->
+<!--        <input name="nameProduct" type="text" id="nameProduct"/>-->
+
+<!--        <label for="price">Price</label>-->
+<!--        <input name="price" type="text" id="price"/>-->
+
+<!--        <label for="available">Available</label>-->      <!--Рабочий вариант-->
+<!--        <select name="available" required>-->
+<!--            <option value="true">yes</option>-->
+<!--            <option value="false">no</option>-->
+<!--        </select>-->
+
+<!--        <input type="submit" value="Add">               Рабочий вариант-->
+
+    <form th:method="post" th:action="@{/api/v2/admin/products}" th:object="${productDTO}">
+        <div>
+            <label for="nameProduct">Name product</label>
+            <input type="text" th:field="*{nameProduct}" id="nameProduct"/>
+
+            <br/>
+
+            <label for="price">Price</label>
+            <input type="number" th:field="*{price}" id="price"/>
+
+            <br/>
+
+            <label for="available">Available</label>
+            <select th:field="*{availableProduct}">
+                <option th:value="'true'" th:text="yes"></option>
+                <option th:value="'false'" th:text="no"></option>
+            </select>
+
+            <br/>
+
+            <input type="submit" value="Add">
+        </div>
+    </form>
+
+</body>
+</html>

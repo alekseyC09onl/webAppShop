@@ -28,14 +28,14 @@ public class ProductService {
         return productDTO;
     }
 
-    public ProductDTO updateProduct(Integer id, ProductDTO productDTO) throws ProductException {
-        if (productRepository.findById(id).isPresent()) {
+    public ProductDTO updateProduct(ProductDTO productDTO) throws ProductException {
+        if (productRepository.findById(productDTO.getId()).isPresent()) {
             Product product = ProductMapper.mapToEntity(productDTO);
-            product.setId(id);
+            product.setId(product.getId());
             productRepository.save(product);
             return ProductMapper.mapToDTO(product);
         } else {
-            throw new ProductException(("Product with id: " + id + " was not found"));
+            throw new ProductException(("Product with id: " + productDTO.getId() + " was not found"));
         }
     }
 

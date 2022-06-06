@@ -1,4 +1,4 @@
-package com.tms.webappshop.controllers;
+package com.tms.webappshop.restControllers;
 
 import com.tms.webappshop.dto.OrderDTO;
 import com.tms.webappshop.exceptions.OrderException;
@@ -10,8 +10,8 @@ import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v2")
-public class OrderController {
+@RequestMapping("/api/v1")
+public class OrderRestController {
 
     private final OrderService orderService;
 

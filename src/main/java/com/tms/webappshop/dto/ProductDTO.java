@@ -12,6 +12,8 @@ import java.util.Set;
 @Builder
 public class ProductDTO {
 
+    private Integer id;
+
     private String nameProduct;
 
     private Double price;

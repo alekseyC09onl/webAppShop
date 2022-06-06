@@ -59,5 +59,5 @@ public class UserService {
             throw new UserException(("User with id: " + id + " was not found"));
         }
     }
-    
+
 }

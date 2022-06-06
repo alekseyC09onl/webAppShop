@@ -1,4 +1,4 @@
-package com.tms.webappshop.controllers;
+package com.tms.webappshop.restControllers;
 
 import com.tms.webappshop.dto.UserDTO;
 import com.tms.webappshop.exceptions.UserException;
@@ -10,8 +10,8 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v2")
-public class UserController {
+@RequestMapping("/api/v1")
+public class UserRestController {
 
     private final UserService userService;
 

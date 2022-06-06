@@ -1,4 +1,4 @@
-package com.tms.webappshop.controllers;
+package com.tms.webappshop.restControllers;
 
 import com.tms.webappshop.dto.CustomerDTO;
 import com.tms.webappshop.exceptions.CustomerException;
@@ -10,8 +10,8 @@ import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v2")
-public class CustomerController {
+@RequestMapping("/api/v1")
+public class CustomerRestController {
 
     private final CustomerService customerService;
 

@@ -5,15 +5,21 @@
     <title>WebShopBy</title>
 </head>
 <body>
-
 <div>
-    <form action="/api/v2/admin/products" target="_parent">
-        <button type="submit">For admins</button>
+    <form action="/api/v2/admin/products/new" target="_parent">
+        <button type="submit">Add product</button>
+    </form>
+    <form action="/api/v2/admin/products/update" target="_parent">
+        <button type="submit">Update product</button>
+    </form>
+    <form action="/api/v2/admin/products/delete" target="_parent">
+        <button type="submit">Delete product</button>
     </form>
 </div>
 
+
 <div th:if="${not #lists.isEmpty(productList)}">
-    <h2>Products</h2>
+    <h2 >Products</h2>
     <table class="table table-striped">
         <tr>
             <th>id</th>

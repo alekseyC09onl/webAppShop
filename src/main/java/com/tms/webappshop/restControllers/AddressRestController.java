@@ -1,4 +1,4 @@
-package com.tms.webappshop.controllers;
+package com.tms.webappshop.restControllers;
 
 
 import com.tms.webappshop.dto.AddressDTO;
@@ -11,8 +11,8 @@ import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v2")
-public class AddressController {
+@RequestMapping("/api/v1")
+public class AddressRestController {
 
     private final AddressService addressService;
 

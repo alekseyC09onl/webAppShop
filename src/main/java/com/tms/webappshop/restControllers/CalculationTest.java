@@ -1,4 +1,4 @@
-package com.tms.webappshop.controllers;
+package com.tms.webappshop.restControllers;
 
 import com.tms.webappshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
-public class Calculation {
+public class CalculationTest {
     private Integer paramA;
     private Integer paramB;
     private String paramAction;
     private double result;
     private final ProductService productService;
 
-    @GetMapping("/calc/v2")
+    @GetMapping("/calc")
     public String calculate(@RequestParam(value = "a", required = false) Integer a,
                             @RequestParam(value = "b", required = false) Integer b,
                             @RequestParam(value = "action", required = false) String action,
@@ -48,22 +48,6 @@ public class Calculation {
         model.addAttribute("action", paramAction);
 
         return "calculationTest";
-    }
-
-//    @GetMapping("/products")
-//    public String getListProduct(Model model) {
-//        model.addAttribute("productList", productService.getProducts());
-//        return "products";
-//    }
-
-    @GetMapping("/admin")
-    public String getHelloAdminPage() {
-        return "hello_admin";
-    }
-
-    @GetMapping("/user")
-    public String getHelloUserPage() {
-        return "hello_user";
     }
 
 }
