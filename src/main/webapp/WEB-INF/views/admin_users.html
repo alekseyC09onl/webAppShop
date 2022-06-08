@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=”http://www.thymeleaf.org”>
+<head>
+    <meta charset="UTF-8">
+    <title>WebShopBy</title>
+</head>
+<body>
+<div>
+
+    <form action="/api/v2/admin/users/new" target="_parent">
+        <button type="submit">Add user</button>
+    </form>
+
+    <br>
+
+    <form action="/api/v2/admin/products" target="_parent">
+        <button type="submit">Products</button>
+    </form>
+
+</div>
+
+
+<div th:if="${not #lists.isEmpty(userDTOList)}">
+    <h2 >Products</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>id</th>
+            <th>Email</th>
+            <th>Phone number</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Role</th>
+        </tr>
+        <tr th:each="userDTO : ${userDTOList}">
+            <td th:text="${userDTO.id}"></td>
+            <td th:text="${userDTO.email}"></td>
+            <td th:text="${userDTO.phoneNumber}"></td>
+            <td th:text="${userDTO.firstName}"></td>
+            <td th:text="${userDTO.lastName}"></td>
+            <td th:text="${userDTO.role}"></td>
+            <td>
+                <form th:method="get" th:action="@{/api/v2/admin/users/update/{id}(id=${userDTO.getId()})}">
+                    <input type="submit" value="edit">
+                </form>
+            </td>
+            <td>
+                <form th:method="delete" th:action="@{/api/v2/admin/users/{id}(id=${userDTO.getId()})}">
+                    <input type="submit" value="delete">
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

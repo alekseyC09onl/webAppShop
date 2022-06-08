@@ -24,22 +24,19 @@ public class UserService {
     }
 
     public UserDTO createUser(UserDTO userDTO) {
-        if (userRepository.findUserByEmail(userDTO.getEmail()).isPresent()) {
-            return null;
-        }
         User user = UserMapper.mapToEntity(userDTO);
         userRepository.save(user);
         return UserMapper.mapToDTO(user);
     }
 
-    public UserDTO updateUser(Integer id, UserDTO userDTO) throws UserException {
-        if (userRepository.findById(id).isPresent()) {
+    public UserDTO updateUser(UserDTO userDTO) throws UserException {
+        if (userRepository.findById(userDTO.getId()).isPresent()) {
             User user = UserMapper.mapToEntity(userDTO);
-            user.setId(id);
+            user.setId(userDTO.getId());
             userRepository.save(user);
             return UserMapper.mapToDTO(user);
         } else {
-            throw new UserException(("User with id: " + id + " was not found"));
+            throw new UserException(("User with id: " + userDTO.getId() + " was not found"));
         }
     }
 

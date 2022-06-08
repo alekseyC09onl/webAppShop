@@ -36,13 +36,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/v2/admin/**").hasAuthority(PermissionsEnum.WRITE.getPermission())
                 .antMatchers(HttpMethod.GET, "/api/v2/products/**").anonymous()
                 .antMatchers(HttpMethod.GET, "/api/v2/products/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v2/registration").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v2/registration/user").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v2/success").permitAll()
                 .antMatchers(HttpMethod.GET, "/user/**").hasAuthority(PermissionsEnum.READ.getPermission())
                 .antMatchers(HttpMethod.GET, "/admin/**").hasAuthority(PermissionsEnum.WRITE.getPermission())
                 .antMatchers(HttpMethod.GET, "/products/**").hasAuthority(PermissionsEnum.READ.getPermission())
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+                .loginPage("/api/v2/login").permitAll();
 
     }
 

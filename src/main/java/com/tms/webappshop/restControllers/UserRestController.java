@@ -27,7 +27,7 @@ public class UserRestController {
 
     @PutMapping("/users/{id}")
     public UserDTO updateUser(@PathVariable("id") Integer id, @RequestBody UserDTO userDTO) throws UserException {
-        return userService.updateUser(id, userDTO);
+        return userService.updateUser(userDTO);
     }
 
     @DeleteMapping("/users/{id}")

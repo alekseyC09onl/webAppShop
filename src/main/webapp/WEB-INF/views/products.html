@@ -10,6 +10,13 @@
     <form action="/api/v2/admin/products" target="_parent">
         <button type="submit">For admins</button>
     </form>
+
+    <br>
+
+    <form method="get" action="/api/v2/registration">
+        <input type="submit" value="Registration">
+    </form>
+
 </div>
 
 <div th:if="${not #lists.isEmpty(productList)}">

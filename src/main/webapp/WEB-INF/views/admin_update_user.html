@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=”http://www.thymeleaf.org”>
+<head>
+    <meta charset="UTF-8">
+    <title>Update user</title>
+</head>
+<body>
+    <a>Update user</a>
+
+    <div>
+        <form th:method="put" th:action="@{/api/v2/admin/users/{id}(id=${userDTO.getId()})}" th:object="${userDTO}">
+            <div>
+                <label for="email">Email</label>
+                <input type="text" th:field="*{email}" id="email"/>
+
+                <br/>
+
+                <label for="password">Password</label>
+                <input type="password" th:field="*{password}" id="password"/>
+
+                <br/>
+
+                <label for="phoneNumber">Phone number</label>
+                <input type="text" th:field="*{phoneNumber}" id="phoneNumber"/>
+
+                <br/>
+
+                <label for="firstName">First name</label>
+                <input type="text" th:field="*{firstName}" id="firstName"/>
+
+                <br/>
+
+                <label for="lastName">Last name</label>
+                <input type="text" th:field="*{lastName}" id="lastName"/>
+
+                <br/>
+
+                <label>Role</label>
+                <select th:field="*{role}">
+                    <option th:value="${roleAdmin}" th:text="ADMIN"></option>
+                    <option th:value="${roleUser}" th:text="USER"></option>
+                </select>
+
+                <br>>
+
+                <input type="submit" value="Update">
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

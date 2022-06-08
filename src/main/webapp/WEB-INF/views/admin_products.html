@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th=”http://www.thymeleaf.org”>
 <head>
     <meta charset="UTF-8">
     <title>WebShopBy</title>
@@ -9,12 +9,28 @@
     <form action="/api/v2/admin/products/new" target="_parent">
         <button type="submit">Add product</button>
     </form>
-    <form action="/api/v2/admin/products/update" target="_parent">
-        <button type="submit">Update product</button>
+
+    <br>
+
+<!--    <form action="/api/v2/admin/users/new" target="_parent">-->
+<!--        <button type="submit">Add user</button>-->
+<!--    </form>-->
+
+<!--    <br>-->
+
+<!--    <form action="/api/v2/admin/users/del" target="_parent">-->
+<!--        <button type="submit">Delete user</button>-->
+<!--    </form>-->
+
+    <form action="/api/v2/admin/users" target="_parent">
+        <button type="submit">Users</button>
     </form>
-    <form action="/api/v2/admin/products/delete" target="_parent">
-        <button type="submit">Delete product</button>
-    </form>
+<!--    <form action="/api/v2/admin/products/update" target="_parent">-->
+<!--        <button type="submit">Update product</button>-->
+<!--    </form>-->
+<!--    <form action="/api/v2/admin/products/delete" target="_parent">-->
+<!--        <button type="submit">Delete product</button>-->
+<!--    </form>-->
 </div>
 
 
@@ -29,12 +45,21 @@
         </tr>
         <tr th:each="productDTO : ${productList}">
             <td th:text="${productDTO.id}"></td>
-            <td><a th:href="@{'/api/v2/products/' + ${productDTO.id}}" th:text="${productDTO.nameProduct}" /></td>
-            <!--            <td th:text="${productDTO.nameProduct}"></td>-->
+<!--            <td><a th:href="@{'/api/v2/products/' + ${productDTO.id}}" th:text="${productDTO.nameProduct}" /></td>-->
+            <td th:text="${productDTO.nameProduct}"></td>
             <td th:text="${productDTO.price}"></td>
             <td th:text="${productDTO.availableProduct}"></td>
-            <td><a th:href="@{'/api/v2/admin/products/update/' + ${productDTO.id}}" />edit</td>
-            <td><a th:href="@{'/api/v2/admin/products/delete/' + ${productDTO.id}}" />delete</td>
+<!--            <td><a th:href="@{'/api/v2/admin/products/update/' + ${productDTO.id}}" />edit</td>-->
+            <td>
+                <form th:method="get" th:action="@{/api/v2/admin/products/update/{id}(id=${productDTO.getId()})}">
+                    <input type="submit" value="edit">
+                </form>
+            </td>
+            <td>
+                <form th:method="delete" th:action="@{/api/v2/admin/products/{id}(id=${productDTO.getId()})}">
+                    <input type="submit" value="delete">
+                </form>
+            </td>
         </tr>
     </table>
 </div>
