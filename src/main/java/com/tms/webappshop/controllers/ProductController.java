@@ -18,6 +18,11 @@ public class ProductController {
 
     private final ProductService productService;
 
+    @GetMapping("/")
+    public String mainRedirect() {
+        return "redirect:/products";
+    }
+
     @GetMapping("/products")
     public String getListProduct(Model model) {
         model.addAttribute("productList", productService.getProducts());

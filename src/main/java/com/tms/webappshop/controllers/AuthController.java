@@ -23,6 +23,11 @@ public class AuthController {
         return "login";
     }
 
+    @PostMapping("logout")
+    public String logout() {
+        return "redirect:/api/v2/products";
+    }
+
     @GetMapping("registration")
     public String registration(Model model) {
         model.addAttribute("userDTO", UserDTO.builder().build());

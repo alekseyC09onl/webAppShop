@@ -6,6 +6,12 @@
 </head>
 <body>
 <div>
+    <form method="post" action="/api/v2/logout" target="_parent">
+        <button type="submit">Logout</button>
+    </form>
+
+    <br>
+
     <form action="/api/v2/admin/products/new" target="_parent">
         <button type="submit">Add product</button>
     </form>
@@ -48,7 +54,11 @@
 <!--            <td><a th:href="@{'/api/v2/products/' + ${productDTO.id}}" th:text="${productDTO.nameProduct}" /></td>-->
             <td th:text="${productDTO.nameProduct}"></td>
             <td th:text="${productDTO.price}"></td>
-            <td th:text="${productDTO.availableProduct}"></td>
+            <td th:switch="${productDTO.availableProduct}">
+                <a th:case="true">Available</a>
+                <a th:case="false">Not available</a>
+            </td>
+<!--            <td th:text="${productDTO.availableProduct}"></td>-->
 <!--            <td><a th:href="@{'/api/v2/admin/products/update/' + ${productDTO.id}}" />edit</td>-->
             <td>
                 <form th:method="get" th:action="@{/api/v2/admin/products/update/{id}(id=${productDTO.getId()})}">

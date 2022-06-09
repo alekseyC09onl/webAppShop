@@ -7,6 +7,13 @@
 <body>
 
 <div>
+
+    <form method="post" action="/api/v2/logout" target="_parent">
+        <button type="submit">Logout</button>
+    </form>
+
+    <br>
+
     <form action="/api/v2/admin/products" target="_parent">
         <button type="submit">For admins</button>
     </form>
@@ -26,14 +33,18 @@
             <th>id</th>
             <th>Name</th>
             <th>Price</th>
-            <th>Available</th>
+<!--            <th>Available</th>-->
         </tr>
         <tr th:each="productDTO : ${productList}">
             <td th:text="${productDTO.id}"></td>
-            <td><a th:href="@{'/api/v2/products/' + ${productDTO.id}}" th:text="${productDTO.nameProduct}" /></td>
-            <!--            <td th:text="${productDTO.nameProduct}"></td>-->
+<!--            <td><a th:href="@{'/api/v2/products/' + ${productDTO.id}}" th:text="${productDTO.nameProduct}" /></td>-->
+            <td th:text="${productDTO.nameProduct}"></td>
             <td th:text="${productDTO.price}"></td>
-            <td th:text="${productDTO.availableProduct}"></td>
+            <td th:switch="${productDTO.availableProduct}">
+                    <a th:case="true">Available</a>
+                    <a th:case="false">Not available</a>
+            </td>
+<!--            <td th:text="${productDTO.availableProduct}"></td>-->
         </tr>
     </table>
 </div>
