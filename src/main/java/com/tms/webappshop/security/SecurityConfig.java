@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.util.matcher.AndRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static com.tms.webappshop.common.Helpers.passwordEncoder;
@@ -33,16 +32,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v2/admin/**").hasAuthority(PermissionsEnum.WRITE.getPermission())
                 .antMatchers(HttpMethod.GET, "/api/v2/products/**").anonymous()
                 .antMatchers(HttpMethod.GET, "/api/v2/products/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v2/registration").permitAll()
                 .antMatchers(HttpMethod.GET, "/").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v2/registration/user").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v2/success").permitAll()
-                .antMatchers(HttpMethod.GET, "/user/**").hasAuthority(PermissionsEnum.READ.getPermission())
-                .antMatchers(HttpMethod.GET, "/admin/**").hasAuthority(PermissionsEnum.WRITE.getPermission())
-                .antMatchers(HttpMethod.GET, "/products/**").hasAuthority(PermissionsEnum.READ.getPermission())
+                .antMatchers("/api/v2/admin/**").hasAuthority(PermissionsEnum.WRITE.getPermission())
+                .antMatchers(HttpMethod.GET, "/api/v2/users/edit").hasAuthority(PermissionsEnum.READ.getPermission())
                 .anyRequest()
                 .authenticated()
                 .and()

@@ -1,22 +1,65 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>-->
+
+<!--    <title>Login</title>-->
+
+    <meta name="viewport" content="width=device-width, initial3-scale=1">
+
+<!--</head>-->
+<!--<body>-->
+<!--<h2 class="display-4">Sing in</h2>-->
+<!--<div class="col-md-4" >-->
+<!--    <form method="post" action="/api/v2/login">-->
+<!--        <div class="mb-3">-->
+<!--            <label for="email" class="form-label">Email address</label>-->
+<!--            <input type="text" class="form-control" id="email" placeholder="name@example.com">-->
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--            <label for="password" class="form-label">Password</label>-->
+<!--            <input type="password" class="form-control" id="password" rows="3">-->
+<!--        </div>-->
+<!--        <button type="submit" class="btn btn-primary">Sign in</button>-->
+<!--    </form>-->
+
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
     <title>Login</title>
+
+    <meta name="viewport" content="width=device-width, initial3-scale=1">
+
 </head>
 <body>
-<div class="container">
-    <form method="post" action="/api/v2/login">
-        <h2>Login</h2>
+
+
+<div>
+    <form class="col-md-4" method="post" action="/api/v2/login">
+
+        <h2 class="display-3">Sing in</h2>
+
         <p>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
+            <label class="form-label" for="username">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="name@example.com" required="" autofocus="">
         </p>
         <p>
-            <label for="password">Password</label>
+            <label class="form-label" for="password">Password</label>
             <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
         </p>
-        <button type="submit">Sign in</button>
+        <button class="btn btn-primary" type="submit">Sign in</button>
     </form>
 
 </div>

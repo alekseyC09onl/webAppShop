@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -32,7 +33,7 @@ public class UserController {
     }
 
     @PutMapping("/admin/users/{id}")
-    public String updateUser(@PathVariable("id") Integer id, @ModelAttribute("userDTO") UserDTO userDTO) throws UserException {
+    public String adminUpdateUser(@PathVariable("id") Integer id, @ModelAttribute("userDTO") UserDTO userDTO) throws UserException {
         userService.updateUser(userDTO);
         return "redirect:/api/v2/admin/users";
     }
@@ -66,5 +67,18 @@ public class UserController {
     public String redirectUpdateUsersMethod(@PathVariable("id") Integer id, Model model) throws UserException {
         model.addAttribute("userDTO", userService.getUserById(id));
         return "admin_update_user";
+    }
+
+    @GetMapping("/users/edit")
+    public String editProfile(Model model, Principal principal) throws UserException {
+        model.addAttribute("userDTO", userService.getUserDTOByEmail(principal.getName()));
+        return "update_user";
+    }
+
+    @PutMapping("/users/{id}")
+    public String updateUser(@PathVariable("id") Integer id, @ModelAttribute("userDTO") UserDTO userDTO) throws UserException {
+        userDTO.setRole(RoleEnum.USER);
+        userService.updateUser(userDTO);
+        return "redirect:/api/v2/products";
     }
 }

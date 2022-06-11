@@ -2,75 +2,98 @@
 <html lang="en" xmlns:th=”http://www.thymeleaf.org”>
 <head>
     <meta charset="UTF-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
     <title>WebShopBy</title>
+
+        <meta name="viewport" content="width=device-width, initial3-scale=1">
+
 </head>
 <body>
 <div>
-    <form method="post" action="/api/v2/logout" target="_parent">
-        <button type="submit">Logout</button>
-    </form>
 
-    <br>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/api/v2/products">webAppShop</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <form class="nav-link active" action="/api/v2/admin/products" target="_parent">
+                            <button type="submit" class="btn btn-default">For admins</button>
+                        </form>
+                    </li>
 
-    <form action="/api/v2/admin/products/new" target="_parent">
-        <button type="submit">Add product</button>
-    </form>
+                    <li class="nav-item">
+                        <form method="post" class="nav-link active" action="/api/v2/logout" target="_parent">
+                            <button type="submit" class="btn btn-default">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <br>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNav1">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <form class="nav-link active" action="/api/v2/admin/products/new" target="_parent">
+                            <button type="submit" class="btn btn-success">Add product</button>
+                        </form>
+                    </li>
 
-<!--    <form action="/api/v2/admin/users/new" target="_parent">-->
-<!--        <button type="submit">Add user</button>-->
-<!--    </form>-->
+                    <li class="nav-item">
+                        <form class="nav-link active" action="/api/v2/admin/users">
+                            <button type="submit" class="btn btn-success">Users</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-<!--    <br>-->
-
-<!--    <form action="/api/v2/admin/users/del" target="_parent">-->
-<!--        <button type="submit">Delete user</button>-->
-<!--    </form>-->
-
-    <form action="/api/v2/admin/users" target="_parent">
-        <button type="submit">Users</button>
-    </form>
-<!--    <form action="/api/v2/admin/products/update" target="_parent">-->
-<!--        <button type="submit">Update product</button>-->
-<!--    </form>-->
-<!--    <form action="/api/v2/admin/products/delete" target="_parent">-->
-<!--        <button type="submit">Delete product</button>-->
-<!--    </form>-->
 </div>
 
 
 <div th:if="${not #lists.isEmpty(productList)}">
     <h2 >Products</h2>
     <table class="table table-striped">
+        <thead>
         <tr>
             <th>id</th>
             <th>Name</th>
             <th>Price</th>
             <th>Available</th>
+            <th></th>
+            <th></th>
         </tr>
+        </thead>
+        <tbody class="table-group-divider">
         <tr th:each="productDTO : ${productList}">
             <td th:text="${productDTO.id}"></td>
-<!--            <td><a th:href="@{'/api/v2/products/' + ${productDTO.id}}" th:text="${productDTO.nameProduct}" /></td>-->
             <td th:text="${productDTO.nameProduct}"></td>
             <td th:text="${productDTO.price}"></td>
             <td th:switch="${productDTO.availableProduct}">
                 <a th:case="true">Available</a>
                 <a th:case="false">Not available</a>
             </td>
-<!--            <td th:text="${productDTO.availableProduct}"></td>-->
-<!--            <td><a th:href="@{'/api/v2/admin/products/update/' + ${productDTO.id}}" />edit</td>-->
             <td>
                 <form th:method="get" th:action="@{/api/v2/admin/products/update/{id}(id=${productDTO.getId()})}">
-                    <input type="submit" value="edit">
+                    <button type="submit" class="btn btn-outline-success">Edit</button>
                 </form>
             </td>
             <td>
-                <form th:method="delete" th:action="@{/api/v2/admin/products/{id}(id=${productDTO.getId()})}">
-                    <input type="submit" value="delete">
+                <form th:method="post" th:action="@{/api/v2/admin/products/{id}(id=${productDTO.getId()})}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-outline-success">Delete</button>
+
                 </form>
             </td>
         </tr>
+        </tbody>
     </table>
 </div>
 </body>

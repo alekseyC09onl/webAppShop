@@ -2,6 +2,7 @@ package com.tms.webappshop.controllers;
 
 import com.tms.webappshop.dto.UserDTO;
 import com.tms.webappshop.entity.RoleEnum;
+import com.tms.webappshop.service.CustomerService;
 import com.tms.webappshop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AuthController {
 
     private final UserService userService;
+    private final CustomerService customerService;
 
     @GetMapping("login")
     public String getLoginPage() {

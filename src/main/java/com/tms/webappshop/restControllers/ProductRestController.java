@@ -6,6 +6,8 @@ import com.tms.webappshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -16,7 +18,7 @@ public class ProductRestController {
     private final ProductService productService;
 
     @GetMapping("/products")
-    public Set<ProductDTO> getProducts() {
+    public List<ProductDTO> getProducts() {
         return productService.getProducts();
     }
 

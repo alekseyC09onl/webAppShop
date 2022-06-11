@@ -2,8 +2,6 @@ package com.tms.webappshop.entity;
 
 
 public enum PermissionsEnum {
-    DEVELOPERS_READ("developers:read"),
-    DEVELOPERS_WRITE("developers:write"),
     READ("READ"),
     WRITE("WRITE");
 

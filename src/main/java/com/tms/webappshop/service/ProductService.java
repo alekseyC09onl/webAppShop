@@ -8,6 +8,8 @@ import com.tms.webappshop.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,10 +19,11 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    public Set<ProductDTO> getProducts() {
+    public List<ProductDTO> getProducts() {
         return productRepository.findAll().stream()
                 .map(ProductMapper::mapToDTO)
-                .collect(Collectors.toSet());
+                .sorted((o1, o2) -> o2.getId().compareTo(o1.getId()))
+                .collect(Collectors.toList());
     }
 
     public ProductDTO createProduct(ProductDTO productDTO) {
@@ -31,7 +34,7 @@ public class ProductService {
     public ProductDTO updateProduct(ProductDTO productDTO) throws ProductException {
         if (productRepository.findById(productDTO.getId()).isPresent()) {
             Product product = ProductMapper.mapToEntity(productDTO);
-            product.setId(product.getId());
+            product.setId(productDTO.getId());
             productRepository.save(product);
             return ProductMapper.mapToDTO(product);
         } else {

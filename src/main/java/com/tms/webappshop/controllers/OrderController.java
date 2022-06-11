@@ -1,6 +1,7 @@
 package com.tms.webappshop.controllers;
 
 import com.tms.webappshop.dto.OrderDTO;
+import com.tms.webappshop.dto.ProductDTO;
 import com.tms.webappshop.exceptions.OrderException;
 import com.tms.webappshop.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -39,4 +40,5 @@ public class OrderController {
     public OrderDTO getOrderById(@PathVariable("id") Integer id) throws OrderException {
         return orderService.getOrderById(id);
     }
+
 }

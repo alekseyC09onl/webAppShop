@@ -8,6 +8,7 @@ import com.tms.webappshop.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -53,5 +54,10 @@ public class CustomerService {
         } else {
             throw new CustomerException(("Customer with id: " + id + " was not found"));
         }
+    }
+
+    public CustomerDTO getCustomerByEmail(String email) {
+        Optional<Customer> customer = customerRepository.getCustomerByEmail(email);
+        return CustomerMapper.mapToDTO(customer.get());
     }
 }

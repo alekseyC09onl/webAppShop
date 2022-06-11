@@ -2,6 +2,7 @@ package com.tms.webappshop.mapper;
 
 import com.tms.webappshop.common.Helpers;
 import com.tms.webappshop.dto.UserDTO;
+import com.tms.webappshop.entity.RoleEnum;
 import com.tms.webappshop.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
