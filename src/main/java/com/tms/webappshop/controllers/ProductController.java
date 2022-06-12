@@ -7,8 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Set;
 
@@ -18,11 +20,6 @@ import java.util.Set;
 public class ProductController {
 
     private final ProductService productService;
-
-    @GetMapping("/")
-    public String mainRedirect() {
-        return "redirect:/products";
-    }
 
     @GetMapping("/products")
     public String getListProduct(Model model) {
@@ -37,25 +34,21 @@ public class ProductController {
     }
 
     @PostMapping("/admin/products")
-    public String createProduct(@ModelAttribute("productDTO") ProductDTO productDTO
-            /*@RequestParam("nameProduct") String nameProduct,
-            @RequestParam("price") Double price,
-            @RequestParam("available") boolean available,
-            Model model*/) {
-
-//        ProductDTO productDTO = ProductDTO.builder()
-//                .nameProduct(nameProduct)
-//                .price(price)
-//                .availableProduct(available)
-//                .build();
+    public String createProduct(@ModelAttribute("productDTO") @Valid ProductDTO productDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "admin_add_product";
+        }
         productService.createProduct(productDTO);
         return "redirect:/api/v2/admin/products";
     }
 
     @PutMapping("/admin/products/{id}")
-    public String updateProduct(@ModelAttribute("productDTO") ProductDTO productDTO/*,
-                                    @PathVariable("id") Integer id*/) throws ProductException {
+    public String updateProduct(@ModelAttribute("productDTO") @Valid ProductDTO productDTO,
+                                BindingResult bindingResult) throws ProductException {
 
+        if (bindingResult.hasErrors()) {
+            return "admin_update_product";
+        }
         productService.updateProduct(productDTO);
         return "redirect:/api/v2/admin/products";
     }

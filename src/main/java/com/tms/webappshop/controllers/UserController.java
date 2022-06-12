@@ -8,8 +8,10 @@ import com.tms.webappshop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -25,15 +27,23 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @PostMapping("/users")
-    public String createUser(@ModelAttribute("userDTO") UserDTO userDTO) {
+    @PostMapping("/admin/users")
+    public String createUser(@ModelAttribute("userDTO") @Valid UserDTO userDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "admin_add_user";
+        }
         userService.createUser(userDTO);
         return "redirect:/api/v2/admin/users";
 
     }
 
     @PutMapping("/admin/users/{id}")
-    public String adminUpdateUser(@PathVariable("id") Integer id, @ModelAttribute("userDTO") UserDTO userDTO) throws UserException {
+    public String adminUpdateUser(@PathVariable("id") Integer id,
+                                  @ModelAttribute("userDTO") @Valid UserDTO userDTO,
+                                  BindingResult bindingResult) throws UserException {
+        if (bindingResult.hasErrors()) {
+            return "admin_update_user";
+        }
         userService.updateUser(userDTO);
         return "redirect:/api/v2/admin/users";
     }
@@ -76,7 +86,12 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public String updateUser(@PathVariable("id") Integer id, @ModelAttribute("userDTO") UserDTO userDTO) throws UserException {
+    public String updateUser(@PathVariable("id") Integer id,
+                             @ModelAttribute("userDTO") @Valid UserDTO userDTO,
+                             BindingResult bindingResult) throws UserException {
+        if (bindingResult.hasErrors()) {
+            return "update_user";
+        }
         userDTO.setRole(RoleEnum.USER);
         userService.updateUser(userDTO);
         return "redirect:/api/v2/products";

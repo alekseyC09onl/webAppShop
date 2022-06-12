@@ -40,11 +40,13 @@
     <div class="mb-3 row">
         <label for="nameProduct">Name products</label>
         <input class="form-control" type="text" th:field="*{nameProduct}" id="nameProduct"/>
+        <div th:if="${#fields.hasErrors('nameProduct')}" th:errors="*{nameProduct}"></div>
     </div>
 
     <div class="mb-3 row">
         <label class="col-sm-2 col-form-label" for="price">Price</label>
-        <input class="form-control" type="number" th:field="*{price}" id="price"/>
+        <input class="form-control" type="number" step="any" th:field="*{price}" id="price"/>
+        <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
     </div>
 
     <div class="mb-3 row">
