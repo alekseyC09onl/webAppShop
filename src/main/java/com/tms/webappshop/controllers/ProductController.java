@@ -24,12 +24,6 @@ public class ProductController {
         return "products";
     }
 
-    @GetMapping("/products/{id}")
-    public String getProductById(@PathVariable("id") Integer id, Model model) throws ProductException {
-        model.addAttribute("productDTO", productService.getProductById(id));
-        return "current_product";
-    }
-
     @PostMapping("/admin/products")
     public String createProduct(@ModelAttribute("productDTO") @Valid ProductDTO productDTO, BindingResult bindingResult) throws ProductException {
         if (bindingResult.hasErrors()) {

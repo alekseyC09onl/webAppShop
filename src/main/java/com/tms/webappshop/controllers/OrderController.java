@@ -1,7 +1,6 @@
 package com.tms.webappshop.controllers;
 
 import com.tms.webappshop.dto.OrderDTO;
-import com.tms.webappshop.dto.ProductDTO;
 import com.tms.webappshop.exceptions.OrderException;
 import com.tms.webappshop.service.OrderService;
 import lombok.RequiredArgsConstructor;

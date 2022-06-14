@@ -1,6 +1,5 @@
 package com.tms.webappshop.dto;
 
-//import com.tms.webappshop.entity.Role;
 import com.tms.webappshop.entity.RoleEnum;
 import lombok.*;
 

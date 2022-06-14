@@ -22,7 +22,6 @@ import javax.validation.Valid;
 public class AuthController {
 
     private final UserService userService;
-    private final CustomerService customerService;
 
     @GetMapping("login")
     public String getLoginPage() {

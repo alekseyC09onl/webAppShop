@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
 
     @Autowired
-    public SecurityConfig(/*Qualifier("userDetailsServiceImpl") */UserDetailsService userDetailsService) {
+    public SecurityConfig(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -55,35 +55,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-//    @Bean
-//    @Override
-//    protected UserDetailsService userDetailsService() {
-//        return new InMemoryUserDetailsManager(
-//                User.builder()
-//                        .username("admin")
-//                        .password(passwordEncoder().encode("admin"))
-////                        .roles(RoleEnum.ADMIN.name())
-//                        .authorities(RoleEnum.ADMIN.getAuthorities())
-//                        .build(),
-//                User.builder()
-//                        .username("user")
-//                        .password(passwordEncoder().encode("user"))
-////                        .roles(RoleEnum.USER.name())
-//                        .authorities(RoleEnum.USER.getAuthorities())
-//                        .build()
-//        );
-//    }
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
-
-//    @Bean
-//    protected PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder(12);
-//    }
 
     @Bean
     protected DaoAuthenticationProvider daoAuthenticationProvider() {

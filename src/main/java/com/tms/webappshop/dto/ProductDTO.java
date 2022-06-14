@@ -2,9 +2,6 @@ package com.tms.webappshop.dto;
 
 import com.tms.webappshop.entity.Order;
 import lombok.*;
-import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.UniqueElements;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
