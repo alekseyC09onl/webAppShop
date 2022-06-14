@@ -4,15 +4,12 @@ import com.tms.webappshop.dto.ProductDTO;
 import com.tms.webappshop.exceptions.ProductException;
 import com.tms.webappshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
-import java.util.Set;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,7 +31,7 @@ public class ProductController {
     }
 
     @PostMapping("/admin/products")
-    public String createProduct(@ModelAttribute("productDTO") @Valid ProductDTO productDTO, BindingResult bindingResult) {
+    public String createProduct(@ModelAttribute("productDTO") @Valid ProductDTO productDTO, BindingResult bindingResult) throws ProductException {
         if (bindingResult.hasErrors()) {
             return "admin_add_product";
         }

@@ -12,4 +12,11 @@ public class Helpers {
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
+
+    public static String toUpFirstSymbol(String s) {
+        if (!s.isEmpty() && s != null) {
+            return s.substring(0, 1).toUpperCase() + s.substring(1);
+        }
+        return s;
+    }
 }

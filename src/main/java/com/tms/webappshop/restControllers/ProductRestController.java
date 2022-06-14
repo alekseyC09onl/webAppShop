@@ -23,7 +23,7 @@ public class ProductRestController {
     }
 
     @PostMapping("/products")
-    public ProductDTO createProduct(@RequestBody ProductDTO productDTO) {
+    public ProductDTO createProduct(@RequestBody ProductDTO productDTO) throws ProductException {
         return productService.createProduct(productDTO);
     }
 

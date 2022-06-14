@@ -43,11 +43,6 @@ public class User implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
-//    @ManyToMany
-//    @JoinTable(name = "users_roles",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private Set<Role> roleSet;
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private RoleEnum role;

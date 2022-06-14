@@ -26,13 +26,19 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    public ProductDTO createProduct(ProductDTO productDTO) {
+    public ProductDTO createProduct(ProductDTO productDTO) throws ProductException {
+        if (productRepository.findProductByNameProduct(productDTO.getNameProduct()).isPresent()) {
+            throw new ProductException("Product with name: " + productDTO.getNameProduct() + " is already exist");
+        }
         productRepository.save(ProductMapper.mapToEntity(productDTO));
         return productDTO;
     }
 
     public ProductDTO updateProduct(ProductDTO productDTO) throws ProductException {
         if (productRepository.findById(productDTO.getId()).isPresent()) {
+            if (productRepository.findProductByNameProduct(productDTO.getNameProduct()).isPresent()) {
+                throw new ProductException("Product with name: " + productDTO.getNameProduct() + " is already exist");
+            }
             Product product = ProductMapper.mapToEntity(productDTO);
             product.setId(productDTO.getId());
             productRepository.save(product);

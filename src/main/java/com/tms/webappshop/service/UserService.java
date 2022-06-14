@@ -28,7 +28,10 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public UserDTO createUser(UserDTO userDTO) {
+    public UserDTO createUser(UserDTO userDTO) throws UserException {
+        if (userRepository.findUserByEmail(userDTO.getEmail()).isPresent()) {
+            throw new UserException(("User with email: " + userDTO.getEmail() + " is already exist"));
+        }
         User user = UserMapper.mapToEntity(userDTO);
         userRepository.save(user);
         Customer customer = UserDTOCustomerMapper.mapToCustomer(userDTO);
@@ -38,6 +41,9 @@ public class UserService {
 
     public UserDTO updateUser(UserDTO userDTO) throws UserException {
         if (userRepository.findById(userDTO.getId()).isPresent()) {
+            if (userRepository.findUserByEmail(userDTO.getEmail()).isPresent()) {
+                throw new UserException(("User with email: " + userDTO.getEmail() + " is already exist"));
+            }
             User user = UserMapper.mapToEntity(userDTO);
             user.setId(userDTO.getId());
             userRepository.save(user);

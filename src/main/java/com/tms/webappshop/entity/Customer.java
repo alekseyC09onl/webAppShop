@@ -39,20 +39,6 @@ public class Customer implements Serializable {
     @JoinColumn(name = "address_id")
     private Address address;
 
-//    @OneToMany(mappedBy = "customer")
-//    private List<Address> addressList;
-
-//    @OneToMany
-//    @JoinColumn(name = "address_id")
-//    private List<Address> addressList;
-
-//    @OneToMany(mappedBy = "customer")
-//    private List<Order> orderList;
-
-//    @OneToMany(mappedBy = "customer")
-//    private Set<Order> orderSet;
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

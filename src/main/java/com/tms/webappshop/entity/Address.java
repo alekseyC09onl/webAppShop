@@ -38,11 +38,6 @@ public class Address implements Serializable {
     @Column(name = "level")
     private Integer level;
 
-//    @ManyToOne
-//    @JoinColumn(name = "customer_id")
-//    private Customer customer;
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

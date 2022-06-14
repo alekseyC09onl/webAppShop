@@ -2,6 +2,7 @@ package com.tms.webappshop.controllers;
 
 import com.tms.webappshop.dto.UserDTO;
 import com.tms.webappshop.entity.RoleEnum;
+import com.tms.webappshop.exceptions.UserException;
 import com.tms.webappshop.service.CustomerService;
 import com.tms.webappshop.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +41,7 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public String registrationUser(@ModelAttribute("userDTO") @Valid UserDTO userDTO, BindingResult bindingResult) {
+    public String registrationUser(@ModelAttribute("userDTO") @Valid UserDTO userDTO, BindingResult bindingResult) throws UserException {
         if (bindingResult.hasErrors()) {
             return "registration";
         }

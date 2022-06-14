@@ -34,10 +34,6 @@ public class Order implements Serializable {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-//    @ManyToOne
-//    @JoinColumn()
-//    private Customer customer;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

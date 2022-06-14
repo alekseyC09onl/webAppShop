@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping("/admin/users")
-    public String createUser(@ModelAttribute("userDTO") @Valid UserDTO userDTO, BindingResult bindingResult) {
+    public String createUser(@ModelAttribute("userDTO") @Valid UserDTO userDTO, BindingResult bindingResult) throws UserException {
         if (bindingResult.hasErrors()) {
             return "admin_add_user";
         }

@@ -14,7 +14,6 @@ public class UserMapper {
                 .email(user.getEmail())
                 .firstName((user.getFirstName()))
                 .lastName((user.getLastName()))
-//                .password(user.getPassword())
                 .phoneNumber(user.getPhoneNumber())
                 .role(user.getRole())
                 .build();
@@ -23,8 +22,8 @@ public class UserMapper {
     public static User mapToEntity(UserDTO userDTO) {
         return User.builder()
                 .email(userDTO.getEmail())
-                .firstName((userDTO.getFirstName()))
-                .lastName((userDTO.getLastName()))
+                .firstName(Helpers.toUpFirstSymbol(userDTO.getFirstName()))
+                .lastName(Helpers.toUpFirstSymbol(userDTO.getLastName()))
                 .password(Helpers.passwordEncoder().encode(userDTO.getPassword()))
                 .phoneNumber(userDTO.getPhoneNumber())
                 .role(userDTO.getRole())

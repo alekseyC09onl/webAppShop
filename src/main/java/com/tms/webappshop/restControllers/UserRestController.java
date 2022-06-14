@@ -21,7 +21,7 @@ public class UserRestController {
     }
 
     @PostMapping("/users")
-    public UserDTO createUser(@RequestBody UserDTO userDTO) {
+    public UserDTO createUser(@RequestBody UserDTO userDTO) throws UserException {
         return userService.createUser(userDTO);
     }
 

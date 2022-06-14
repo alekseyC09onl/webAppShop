@@ -2,6 +2,8 @@ package com.tms.webappshop.dto;
 
 import com.tms.webappshop.entity.Order;
 import lombok.*;
+import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -20,7 +22,6 @@ public class ProductDTO {
     @NotEmpty(message = "Product name should not be empty")
     private String nameProduct;
 
-//    @NotEmpty(message = "Product name should not be empty")
     @Min(value = 0, message = "Price should no be less 0")
     private BigDecimal price;
 
