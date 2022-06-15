@@ -63,7 +63,6 @@
             <tbody class="table-group-divider">
         <tr th:each="productDTO : ${productList}">
             <td th:text="${productDTO.id}"></td>
-            <!--            <td><a th:href="@{'/api/v2/products/' + ${productDTO.id}}" th:text="${productDTO.nameProduct}" /></td>-->
             <td th:text="${productDTO.nameProduct}"></td>
             <td th:text="${productDTO.price}"></td>
             <td th:switch="${productDTO.availableProduct}">

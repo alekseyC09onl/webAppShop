@@ -50,9 +50,7 @@ public class ProductService {
 
     public void deleteProduct(Integer id) throws ProductException {
         if (productRepository.findById(id).isPresent()) {
-//            Product product = productRepository.getById(id);
             productRepository.deleteById(id);
-//            return ProductMapper.mapToDTO(product);
         } else {
             throw new ProductException(("Product with id: " + id + " was not found"));
         }
