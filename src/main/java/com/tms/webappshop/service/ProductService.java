@@ -36,9 +36,6 @@ public class ProductService {
 
     public ProductDTO updateProduct(ProductDTO productDTO) throws ProductException {
         if (productRepository.findById(productDTO.getId()).isPresent()) {
-            if (productRepository.findProductByNameProduct(productDTO.getNameProduct()).isPresent()) {
-                throw new ProductException("Product with name: " + productDTO.getNameProduct() + " is already exist");
-            }
             Product product = ProductMapper.mapToEntity(productDTO);
             product.setId(productDTO.getId());
             productRepository.save(product);

@@ -25,7 +25,7 @@ public class UserDTO {
     private String password;
 
     @NotEmpty(message = "Phone number should not be empty")
-    @Size(min = 12, max = 12, message = "Enter correct phone number")
+    @Size(min = 12, max = 12, message = "Enter correct phone number. Example: 375291234567")
     private String phoneNumber;
 
     @NotEmpty(message = "First name should not be empty")

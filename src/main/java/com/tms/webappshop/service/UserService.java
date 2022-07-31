@@ -41,9 +41,6 @@ public class UserService {
 
     public UserDTO updateUser(UserDTO userDTO) throws UserException {
         if (userRepository.findById(userDTO.getId()).isPresent()) {
-            if (userRepository.findUserByEmail(userDTO.getEmail()).isPresent()) {
-                throw new UserException(("User with email: " + userDTO.getEmail() + " is already exist"));
-            }
             User user = UserMapper.mapToEntity(userDTO);
             user.setId(userDTO.getId());
             userRepository.save(user);
